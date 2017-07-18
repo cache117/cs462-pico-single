@@ -17,13 +17,17 @@ A first ruleset for the Quickstart
     
     __testing = { "queries": [ { "name": "hello", "args": [ "obj" ] },
                                { "name": "__testing" } ],
-                  "events": [ { "domain": "echo", "type": "hello" } ]
+                  "events": [ { "domain": "echo", "type": "hello"
+                                "attrs": [ "name" ] } ]
                 }
   }
   
   rule hello_world {
     select when echo hello
-    send_directive("say", {"something": "Hello World"})
+    pre {
+      name = event:attr("name").klog("our passed in name ")
+    }
+    send_directive("say", {"something": "Hello " + name})
   }
   
 }
