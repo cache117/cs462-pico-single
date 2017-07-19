@@ -56,7 +56,7 @@ A first ruleset for the Quickstart
 	}
 
 	rule store_name {
-		select when echo hello
+		select when hello name 
 		pre {
 			name = event:attr("name").klog("our passed in name ")
 		}
