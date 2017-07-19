@@ -50,7 +50,7 @@ A first ruleset for the Quickstart
 	rule hello_world {
 		select when echo hello
 		pre {
-			name = event:attr("name").defaultsTo(ent:name, "use stored name")
+			name = event:attr("name").defaultsTo(ent:name, "use stored name").klog("Why you no work? ")
 		}
 		send_directive("say", {"something": "Hello " + name})
 	}
