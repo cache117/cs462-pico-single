@@ -37,8 +37,8 @@ A first ruleset for the Quickstart
 				},
 				{
 
-					"domain": "echo",
-					"type": "hello",
+					"domain": "hello",
+					"type": "name",
 					"attrs": [
 						"name"
 					]
