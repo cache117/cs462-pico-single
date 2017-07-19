@@ -19,7 +19,9 @@ A first ruleset for the Quickstart
 			"queries": [
 				{
 					"name": "hello",
-					"args": ["obj"]
+					"args": [
+						"obj"
+					]
 				},
 				{
 					"name": "__testing"
@@ -29,8 +31,18 @@ A first ruleset for the Quickstart
 				{
 					"domain": "echo",
 					"type": "hello",
-					"attrs": ["name"]
-				}
+					"attrs": [
+						"name"
+					]
+				},
+				{
+
+					"domain": "echo",
+					"type": "hello",
+					"attrs": [
+						"name"
+					]
+				}	
 			]
 		}
 	}
@@ -41,5 +53,16 @@ A first ruleset for the Quickstart
 			name = event:attr("name").klog("our passed in name ")
 		}
 		send_directive("say", {"something": "Hello " + name})
+	}
+
+	rule store_name {
+		select when echo hello
+		pre {
+			name = event:attr("name").klog("our passed in name ")
+		}
+		send_directive("store_name", {"name": name})
+		always {
+			ent:name := name
+		}
 	}
 }
