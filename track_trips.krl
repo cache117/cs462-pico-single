@@ -11,6 +11,8 @@ Ruleset for CS 462 Lab 6 - Reactive Programming: Single Pico
   
 	global {
 		
+		long_trip = "500"
+		
 		__testing = {
 			"queries": [
 				{
@@ -36,6 +38,18 @@ Ruleset for CS 462 Lab 6 - Reactive Programming: Single Pico
 		always {
 			raise explicit event "trip_processed"
 				attributes event:attrs()
+		}
+	}
+
+	rule find_long_trips {
+		select when explicit trip_processed
+		pre {		
+			mileage = event:attr("mileage").klog("our passed in mileage ")
+		}
+		always {
+			raise explicit event "found_long_trip" attributes {
+				"mileage": mileage
+			} if (mileage > long_trip);
 		}
 	}
 }
