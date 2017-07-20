@@ -19,16 +19,16 @@ Ruleset for CS 462 Lab 6 - Reactive Programming: Single Pico
 			],
 			"events": [
 				{
-					"domain": "echo",
-					"type": "message",
+					"domain": "car",
+					"type": "new_trip",
 					"attrs": ["mileage"]
-				}				
+				}
 			]
 		}
 	}
 
-	rule process_trips {
-		select when echo message
+	rule process_trip {
+		select when car new_trip 
 		pre {
 			mileage = event:attr("mileage").klog("our passed in mileage ")
 		}
