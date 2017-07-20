@@ -40,17 +40,13 @@ A first ruleset for the Quickstart
 				{
 					"domain": "echo",
 					"type": "hello",
-					"attrs": [
-						"name"
-					]
+					"attrs": ["id"]
 				},
 				{
 
 					"domain": "hello",
 					"type": "name",
-					"attrs": [
-						"name"
-					]
+					"attrs": ["name"]
 				},
 				{
 
@@ -65,7 +61,10 @@ A first ruleset for the Quickstart
 	rule hello_world {
 		select when echo hello
 		pre {
-			name = event:attr("name").defaultsTo(ent:name, "use stored name").klog("Why you no work? ")
+			id = event:attr("id").defaultsTo("_0")
+			first = ent:name{[id,"name","first"]}
+			last = ent:name{[id,"name","last"]}
+			name = first + " " + last
 		}
 		send_directive("say", {"something": "Hello " + name})
 	}
