@@ -11,23 +11,23 @@ Ruleset for CS 462 Lab 6 - Reactive Programming: Single Pico
   
 	global {
 		
-		all_trips = {
-			"sample": {
-				"trip": { 
-					"mileage": "120",
-					"timestamp": "stamp"
-				}
-			}
-		}
+		//all_trips = {
+		//	"sample": {
+		//		"trip": { 
+		//			"mileage": "120",
+		//			"timestamp": "stamp"
+		//		}
+		//	}
+		//}
 		
-		long_trips = {
-			"sample": {
-				"trip": { 
-					"mileage": "800",
-					"timestamp": "stamp"
-				}
-			}
-		}
+		//long_trips = {
+		//	"sample": {
+		//		"trip": { 
+		//			"mileage": "800",
+		//			"timestamp": "stamp"
+		//		}
+		//	}
+		//}
 		
 		trip_counter = "0"
 		
@@ -76,7 +76,7 @@ Ruleset for CS 462 Lab 6 - Reactive Programming: Single Pico
 			mileage = event:attr("mileage").klog("our passed in mileage ")
 		}
 		always {
-			ent:trip_counter := ent:trip_counter + "1"
+		//	ent:trip_counter := ent:trip_counter + "1"
 			ent:all_trips := ent:all_trips.put([ent:trip_counter, "trip", "mileage"], mileage)
 			             	              .put([ent:trip_counter, "trip", "timestamp"], timestamp)
 		}
@@ -88,7 +88,7 @@ Ruleset for CS 462 Lab 6 - Reactive Programming: Single Pico
 			mileage = event:attr("mileage").klog("our passed in mileage ")
 		}
 		always {
-			ent:long_trip_counter := ent:trip_counter + "1"
+		//	ent:long_trip_counter := ent:trip_counter + "1"
 			ent:long_trips := ent:long_trips.put([ent:long_trip_counter, "trip", "mileage"], mileage)
 						        .put([ent:long_trip_counter, "trip", "timestamp"], timestamp)
 		}
@@ -98,22 +98,24 @@ Ruleset for CS 462 Lab 6 - Reactive Programming: Single Pico
 		select when car trip_reset
 		always {
 			ent:trip_counter := "0"
-			ent:trips := {
-				"sample": {
-					"trip": { 
-						"mileage": "120",
-						"timestamp": "stamp"
-					}
-				}
-			}
-			ent:long_trips = {
-				"sample": {
-					"trip": { 
-						"mileage": "800",
-						"timestamp": "stamp"
-					}
-				}
-			}
+
+			//ent:all_trips := {
+			//	"sample": {
+			//		"trip": { 
+			//			"mileage": "120",
+			//			"timestamp": "stamp"
+			//		}
+			//	}
+			//}
+
+			//ent:long_trips = {
+			//	"sample": {
+			//		"trip": { 
+			//			"mileage": "800",
+			//			"timestamp": "stamp"
+			//		}
+			//	}
+			//}
 		}
 	}
 }
