@@ -50,6 +50,7 @@ Ruleset for CS 462 Lab 6 - Reactive Programming: Single Pico
 			raise explicit event "found_long_trip" attributes {
 				"mileage": mileage
 			} if (mileage > long_trip);
+			log info "mileage greater" if (mileage > long_trip)
 		}
 	}
 }
