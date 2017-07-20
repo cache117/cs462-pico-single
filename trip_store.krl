@@ -6,7 +6,7 @@ Ruleset for CS 462 Lab 6 - Reactive Programming: Single Pico
 >>
 		author "Cache Staheli"
 		logging on
-		shares __testing
+		shares __testing, trips, long_trips, short_trips
 		provides trips, long_trips, short_trips
 	}
   
