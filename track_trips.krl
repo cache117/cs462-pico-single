@@ -33,5 +33,9 @@ Ruleset for CS 462 Lab 6 - Reactive Programming: Single Pico
 			mileage = event:attr("mileage").klog("our passed in mileage ")
 		}
 		send_directive("trip", {"length": mileage})
+		always {
+			raise explicit event "trip_processed"
+				attributes event:attrs()
+		}
 	}
 }
