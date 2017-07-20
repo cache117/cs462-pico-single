@@ -15,6 +15,15 @@ A first ruleset for the Quickstart
 			msg
 		}
 		
+		clear_name = {
+			"_0": {
+				"name": {
+					"first": "GlaDOS",
+					"last": ""
+				}
+			}
+		}
+		
 		__testing = {
 			"queries": [
 				{
@@ -42,7 +51,13 @@ A first ruleset for the Quickstart
 					"attrs": [
 						"name"
 					]
-				}	
+				},
+				{
+
+					"domain": "hello",
+					"type": "clear"
+				}
+				
 			]
 		}
 	}
@@ -63,6 +78,13 @@ A first ruleset for the Quickstart
 		send_directive("store_name", {"name": name})
 		always {
 			ent:name := name
+		}
+	}
+
+	rule clear_names {
+		select when hello clear 
+		always {
+			ent:name := clear_name
 		}
 	}
 }
